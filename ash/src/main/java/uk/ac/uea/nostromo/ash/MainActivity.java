@@ -1,5 +1,5 @@
 /*
- * MainActivity.java	v0.2.1	2016-01-12
+ * MainActivity.java	v0.2.2	2016-01-12
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * for the first time.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.2.1
+ * @version	v0.2.2
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class MainActivity extends AndroidGame {
@@ -36,8 +36,6 @@ public class MainActivity extends AndroidGame {
 	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		Screen initialScreen;
-
 		Log.v(TAG, "Our application is being created.");
 
 		/* We do not make the call to `Activity.onCreate(Bundle)` because that
