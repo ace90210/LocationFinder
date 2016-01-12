@@ -1,9 +1,12 @@
 /*
- * MainActivity.java	v0.1.0	2016-01-11
+ * MainActivity.java	v0.4.0	2016-01-12
  */
 
 package uk.ac.uea.nostromo.ash;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.util.Log;
 import uk.ac.uea.nostromo.mother.Screen;
 import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
 
@@ -12,18 +15,170 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * for the first time.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.1.0
+ * @version	v0.4.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
-class MainActivity extends AndroidGame {
+public class MainActivity extends AndroidGame {
+	/**
+	 * Constant runtime representation of the class name that is used
+	 * when logging information.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 * @see		android.util.Log
+	 */
+	static final String TAG = "MainActivity";
+
+	/**
+	 * The current screen to display, and provide interaction with the
+	 * user.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	private Screen currentScreen;
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	savedInstanceState	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	@android.annotation.SuppressLint("MissingSuperCall")
+	public void onCreate(Bundle savedInstanceState) {
+		Log.v(TAG, "Our application is being created.");
+
+		/* We do not make the call to `Activity.onCreate(Bundle)` because that
+		 * call is made in `AndroidGame.onCreate(Bundle, int, int)`. See the
+		 * suppressed `MissingSuperCall` issue for details.
+		 */
+		super.onCreate(savedInstanceState, R.layout.home_screen, R.id.table_layout);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	protected void onStart() {
+		Log.v(TAG, "Our application has started.");
+
+		super.onStart();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	protected void onRestart() {
+		Log.v(TAG, "Our application has been restarted.");
+
+		super.onRestart();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void onResume() {
+		Log.v(TAG, "Out application has been resumed.");
+
+		super.onResume();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void onPause() {
+		Log.v(TAG, "Our application has been paused.");
+
+		super.onPause();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	protected void onStop() {
+		Log.v(TAG, "Our application has been stopped.");
+
+		super.onStop();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	protected void onDestroy() {
+		Log.v(TAG, "Our application is begin destroyed.");
+
+		super.onDestroy();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	newScreen	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void setScreen(Screen newScreen) {
+		if (newScreen != null) {
+			if (currentScreen != null) {
+				currentScreen.pause();
+				currentScreen.dispose();
+			}
+
+			currentScreen = newScreen;
+			currentScreen.resume();
+			currentScreen.update(0);
+		} else {
+			throw new IllegalArgumentException("It is not legal to pass a " +
+					"null reference for `screen`. The current `Screen` " +
+					"object must be set to an actual object.");
+		}
+	}
+
 	/**
 	 * {@inheritDoc}
 	 *
 	 * @return	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	public Screen getCurrentScreen() {
+		return currentScreen;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @return	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	@Override
 	public Screen getInitScreen() {
-		throw new UnsupportedOperationException("The method `MainActivity.getInitScreen()` is yet to be implemented.");
+		Context context;
+		Screen homeScreen;
+
+		context = getBaseContext();
+		if (context == null) {
+			Log.w(TAG, "The context we're receiving for the system is `null`.");
+		}
+
+		homeScreen = new HomeScreen(this, context);
+
+		return homeScreen;
 	}
 
 	/**
@@ -36,6 +191,11 @@ class MainActivity extends AndroidGame {
 		Screen currentScreen;
 
 		currentScreen = getCurrentScreen();
-		currentScreen.backButton();
+		if (currentScreen != null) {
+			currentScreen.backButton();
+		} else {
+			Log.e(TAG, "`MainActivity.getCurrentScreen()` has returned a " +
+					"`null` reference for our current screen.");
+		}
 	}
-};
+}

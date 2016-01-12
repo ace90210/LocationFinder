@@ -1,0 +1,7 @@
+ash/build/
+.idea/
+build/
+.gradle/
+local.properties
+ash/ash.iml
+LocationFinder.iml
