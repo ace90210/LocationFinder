@@ -156,4 +156,4 @@ public class MainActivity extends AndroidGame {
 					"`null` reference for our current screen.");
 		}
 	}
-};
+}

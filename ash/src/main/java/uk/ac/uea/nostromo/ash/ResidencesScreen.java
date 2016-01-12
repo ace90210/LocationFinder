@@ -86,4 +86,4 @@ public class ResidencesScreen extends Screen {
     @Override
     public void backButton() {
     }
-};
+}
