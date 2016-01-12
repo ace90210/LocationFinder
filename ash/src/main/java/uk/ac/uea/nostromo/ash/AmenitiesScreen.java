@@ -1,5 +1,5 @@
 /*
- * AmenitiesScreen.java	v0.1.0	2016-01-12
+ * AmenitiesScreen.java	v0.2.0	2016-01-12
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -12,7 +12,7 @@ import uk.ac.uea.nostromo.mother.Screen;
  * Present a list of all the amenities on campus.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.1.0
+ * @version	v0.2.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class AmenitiesScreen extends Screen {
@@ -85,5 +85,11 @@ public class AmenitiesScreen extends Screen {
      */
     @Override
     public void backButton() {
+        Screen newScreen;
+
+        newScreen = new HomeScreen(game, context);
+        if (newScreen != null) {
+            ((MainActivity) game).setScreen(newScreen);
+        }
     }
 }
