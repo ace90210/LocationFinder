@@ -4,6 +4,7 @@
 
 package uk.ac.uea.nostromo.ash;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import uk.ac.uea.nostromo.mother.Screen;
@@ -125,7 +126,17 @@ public class MainActivity extends AndroidGame {
 	 */
 	@Override
 	public Screen getInitScreen() {
-		throw new UnsupportedOperationException("The method `MainActivity.getInitScreen()` is yet to be implemented.");
+		Context context;
+		Screen homeScreen;
+
+		context = getBaseContext();
+		if (context == null) {
+			Log.w(TAG, "The context we're receiving for the system is `null`.");
+		}
+
+		homeScreen = new HomeScreen(this, context);
+
+		return homeScreen;
 	}
 
 	/**
