@@ -1,5 +1,5 @@
 /*
- * MainActivity.java	v0.3.2	2016-01-12
+ * MainActivity.java	v0.4.0	2016-01-12
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * for the first time.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.3.2
+ * @version	v0.4.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class MainActivity extends AndroidGame {
@@ -27,6 +27,14 @@ public class MainActivity extends AndroidGame {
 	 * @see		android.util.Log
 	 */
 	static final String TAG = "MainActivity";
+
+	/**
+	 * The current screen to display, and provide interaction with the
+	 * user.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	private Screen currentScreen;
 
 	/**
 	 * {@inheritDoc}
@@ -116,6 +124,40 @@ public class MainActivity extends AndroidGame {
 		Log.v(TAG, "Our application is begin destroyed.");
 
 		super.onDestroy();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @param	newScreen	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	@Override
+	public void setScreen(Screen newScreen) {
+		if (newScreen != null) {
+			if (currentScreen != null) {
+				currentScreen.pause();
+				currentScreen.dispose();
+			}
+
+			currentScreen = newScreen;
+			currentScreen.resume();
+			currentScreen.update(0);
+		} else {
+			throw new IllegalArgumentException("It is not legal to pass a " +
+					"null reference for `screen`. The current `Screen` " +
+					"object must be set to an actual object.");
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @return	{@inheritDoc}
+	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
+	 */
+	public Screen getCurrentScreen() {
+		return currentScreen;
 	}
 
 	/**
