@@ -1,5 +1,5 @@
 /*
- * MainActivity.java	v0.2.2	2016-01-12
+ * MainActivity.java	v0.3.2	2016-01-12
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * for the first time.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.2.2
+ * @version	v0.3.2
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class MainActivity extends AndroidGame {
@@ -35,11 +35,13 @@ public class MainActivity extends AndroidGame {
 	 * @since	!_TODO__ [Alex Melbourne] : Update this label before new release.
 	 */
 	@Override
+	@android.annotation.SuppressLint("MissingSuperCall")
 	public void onCreate(Bundle savedInstanceState) {
 		Log.v(TAG, "Our application is being created.");
 
 		/* We do not make the call to `Activity.onCreate(Bundle)` because that
-		 * call is made in `AndroidGame.onCreate(Bundle, int, int)`.
+		 * call is made in `AndroidGame.onCreate(Bundle, int, int)`. See the
+		 * suppressed `MissingSuperCall` issue for details.
 		 */
 		super.onCreate(savedInstanceState, R.layout.home_screen, R.id.table_layout);
 	}
