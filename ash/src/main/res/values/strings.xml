@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="category_amenities">category_amenities</string>
+	<string name="category_general">category_general</string>
+	<string name="category_residences">category_residences</string>
+	<string name="category_schools">category_schools</string>
+</resources>

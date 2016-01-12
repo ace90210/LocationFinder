@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+	<!-- This `TableLayout` serves no purpose but exists to satisfy the Mother framework. -->
+	<TableLayout android:id="@id/table_layout" android:layout_height="match_parent" android:layout_width="match_parent" />
+	<LinearLayout android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+		<Button android:id="@id/category_schools" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/category_schools" />
+		<Button android:id="@id/category_general" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/category_general" />
+		<Button android:id="@id/category_residences" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/category_residences" />
+		<Button android:id="@id/category_amenities" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="@string/category_amenities" />
+	</LinearLayout>
+</FrameLayout>

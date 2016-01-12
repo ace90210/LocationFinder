@@ -70,7 +70,7 @@ public class HomeScreen extends Screen {
 		 * part, and the part of the original framework).
 		 */
 		activity = (MainActivity) game;
-		activity.setContentView(R.layout.activity_main);
+		activity.setContentView(R.layout.home_screen);
 	}
 
 	/**
