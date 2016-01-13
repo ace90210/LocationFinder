@@ -2,7 +2,12 @@
 <RelativeLayout android:background="@color/background_dark" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 	<!-- This `TableLayout` serves no purpose but exists to satisfy the Mother framework. -->
 	<TableLayout android:id="@id/table_layout" android:layout_height="match_parent" android:layout_width="match_parent" />
-	<LinearLayout android:gravity="center_vertical|center_horizontal" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
+	<LinearLayout android:gravity="center_vertical|center_horizontal" android:id="@+id/category_list_header" android:layout_height="100dp" android:layout_width="match_parent" android:orientation="horizontal">
+		<ImageView android:layout_height="70dp" android:layout_width="100dp" android:src="@drawable/uealogo2" />
+		<EditText android:background="#ffffff" android:textSize="30dp" android:layout_height="30dp" android:layout_width="180dp" />
+		<ImageButton android:layout_height="50dp" android:layout_width="50dp" android:src="@drawable/tosearch" />
+	</LinearLayout>
+	<LinearLayout android:layout_below="@+id/category_list_header" android:gravity="center_vertical|center_horizontal" android:layout_height="match_parent" android:layout_width="match_parent" android:orientation="vertical">
 		<Button android:background="@color/bright_foreground_dark" android:id="@id/category_schools" android:layout_height="50dp" android:layout_margin="20dp" android:layout_width="200dp" android:text="@string/category_schools" />
 		<Button android:background="@color/bright_foreground_dark" android:id="@id/category_general" android:layout_height="50dp" android:layout_margin="20dp" android:layout_width="200dp" android:text="@string/category_general" />
 		<Button android:background="@color/bright_foreground_dark" android:id="@id/category_residences" android:layout_height="50dp" android:layout_margin="20dp" android:layout_width="200dp" android:text="@string/category_residences" />
