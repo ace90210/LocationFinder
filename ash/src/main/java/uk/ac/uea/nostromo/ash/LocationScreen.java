@@ -1,22 +1,31 @@
 /*
- * LocationScreen.java	v0.1.0	2016-01-31
+ * LocationScreen.java	v0.2.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
 
 import android.content.Context;
+import android.util.Log;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
 import uk.ac.uea.nostromo.mother.Game;
 import uk.ac.uea.nostromo.mother.Screen;
+import uk.ac.uea.nostromo.mother.implementation.Graphics;
 
 /**
  * Take a location from another screen and display it via Google Maps
  * to the user.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.1.0
+ * @version	v0.2.0
  * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
  */
 public class LocationScreen extends Screen {
+	/**
+	 * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
+	 */
+	private static final String TAG = "LocationScreen";
+
 	/**
 	 * @param	game	{@inheritDoc}
 	 * @param	context	{@inheritDoc}
@@ -65,9 +74,21 @@ public class LocationScreen extends Screen {
 	@Override
 	public void resume() {
 		MainActivity activity;
+		Graphics.MyGoogleMap googleMapFragment;
+		Graphics graphics;
 
 		activity = (MainActivity) game;
 		activity.setContentView(R.layout.location_display_screen);
+
+		graphics = game.getGraphics();
+		googleMapFragment = graphics.newMap(activity, R.id.google_map_container,
+				new OnMapReadyCallback() {
+					@Override
+					public void onMapReady(GoogleMap googleMap) {
+						Log.i(TAG, "Our `GoogleMap` object is ready for us " +
+								"to make use of.");
+					}
+				});
 	}
 
 	/**
