@@ -1,5 +1,5 @@
 /*
- * ExpandableListAdapter.java	v3.0.0	2016-01-13
+ * ExpandableListAdapter.java	v3.0.1	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -20,7 +20,7 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * {@inheritDoc}
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v3.0.0
+ * @version	v3.0.1
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -58,6 +58,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	public ExpandableListAdapter(AndroidGame currentGame, Context currentContext) {
 		titles = new ArrayList<String>();
 		captions = new ArrayList<String>();
+		locations = new ArrayList<Location>();
 
 		context = currentContext;
 		game = currentGame;
