@@ -1,5 +1,5 @@
 /*
- * ServicesScreen.java	v0.4.0	2016-01-13
+ * ServicesScreen.java	v0.4.1	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.XMLDatastrategy;
  * Present a list of all the general services found on campus.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.4.0
+ * @version	v0.4.1
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class ServicesScreen extends Screen {
@@ -85,7 +85,7 @@ public class ServicesScreen extends Screen {
 				requiredType = "acc_fac";
 				comparedType = o.getType();
 
-				return requiredType.compareToIgnoreCase(comparedType);
+				return requiredType.equalsIgnoreCase(comparedType) == true ? 1 : 0;
 			}
 		});
 
