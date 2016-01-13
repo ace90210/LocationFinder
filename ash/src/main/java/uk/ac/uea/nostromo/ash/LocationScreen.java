@@ -1,11 +1,14 @@
 /*
- * LocationScreen.java	v0.2.1	2016-01-13
+ * LocationScreen.java	v0.3.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
 
 import android.content.Context;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
@@ -20,7 +23,7 @@ import uk.ac.uea.nostromo.mother.implementation.Graphics;
  * to the user.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.2.1
+ * @version	v0.3.0
  * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
  */
 public class LocationScreen extends Screen {
@@ -82,9 +85,21 @@ public class LocationScreen extends Screen {
 		MainActivity activity;
 		Graphics.MyGoogleMap googleMapFragment;
 		Graphics graphics;
+		Button homeButton;
 
 		activity = (MainActivity) game;
 		activity.setContentView(R.layout.location_display_screen);
+
+		homeButton = (Button) activity.findViewById(R.id.button_home);
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Screen homeScreen;
+
+				homeScreen = new HomeScreen(game, context);
+				game.setScreen(homeScreen);
+			}
+		});
 
 		graphics = game.getGraphics();
 		googleMapFragment = graphics.newMap(activity, R.id.google_map_container,

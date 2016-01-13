@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+	<item type="id" name="button_home" />
 	<item type="id" name="category_amenities" />
 	<item type="id" name="category_general" />
 	<item type="id" name="category_list" />
