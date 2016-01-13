@@ -1,5 +1,5 @@
 /*
- * ExpandableListAdapter.java	v3.0.1	2016-01-13
+ * ExpandableListAdapter.java	v3.1.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -20,7 +20,7 @@ import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
  * {@inheritDoc}
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v3.0.1
+ * @version	v3.1.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -191,7 +191,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		textView = new TextView(context);
 		textView.setText(captions.get(childPosition));
 
-		button = new LocationButton(game, context, locations.get(childPosition));
+		button = new LocationButton(game, context, locations.get(childPosition), titles.get(groupPosition));
 		button.setText("Take me here!");
 
 		linearLayout.addView(textView);
@@ -242,6 +242,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		/**
 		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
 		 */
+		private String desiredTag;
+
+		/**
+		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+		 */
 		private AndroidGame game;
 
 		/**
@@ -252,12 +257,13 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		/**
 		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
 		 */
-		public LocationButton(AndroidGame currentGame, Context currentContext, Location location) {
+		public LocationButton(AndroidGame currentGame, Context currentContext, Location location, String tag) {
 			super(currentContext);
 
 			game = currentGame;
 			context = currentContext;
 			desiredLocation = location;
+			desiredTag = tag;
 
 			super.setOnClickListener(new OnClickListener() {
 				@Override
@@ -267,6 +273,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					newScreen = new LocationScreen(game, context);
 					if (newScreen != null) {
 						newScreen.setLocation(desiredLocation);
+						newScreen.setTagTitle(desiredTag);
 						game.setScreen(newScreen);
 					}
 				}

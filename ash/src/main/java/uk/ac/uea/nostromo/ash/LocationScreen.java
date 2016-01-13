@@ -1,5 +1,5 @@
 /*
- * LocationScreen.java	v0.3.0	2016-01-13
+ * LocationScreen.java	v0.4.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -23,7 +23,7 @@ import uk.ac.uea.nostromo.mother.implementation.Graphics;
  * to the user.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.3.0
+ * @version	v0.4.0
  * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
  */
 public class LocationScreen extends Screen {
@@ -36,6 +36,11 @@ public class LocationScreen extends Screen {
 	 * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
 	 */
 	private Location desiredLocation;
+
+	/**
+	 * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
+	 */
+	private String currentTitle;
 
 	/**
 	 * @param	game	{@inheritDoc}
@@ -116,6 +121,7 @@ public class LocationScreen extends Screen {
 						markerOptions = new MarkerOptions();
 
 						markerOptions.position(location);
+						markerOptions.title(currentTitle);
 						googleMap.addMarker(markerOptions);
 					}
 				});
@@ -153,5 +159,15 @@ public class LocationScreen extends Screen {
 	 */
 	public void setLocation(Location location) {
 		desiredLocation = location;
+	}
+
+	/**
+	 * Set the current title to use for the for the Google Maps marker
+	 * tag.
+	 *
+	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+	 */
+	public void setTagTitle(String tagTitle) {
+		currentTitle = tagTitle;
 	}
 }
