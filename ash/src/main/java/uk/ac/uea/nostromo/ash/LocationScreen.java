@@ -1,5 +1,5 @@
 /*
- * LocationScreen.java	v0.2.0	2016-01-13
+ * LocationScreen.java	v0.2.1	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -17,7 +17,7 @@ import uk.ac.uea.nostromo.mother.implementation.Graphics;
  * to the user.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.2.0
+ * @version	v0.2.1
  * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
  */
 public class LocationScreen extends Screen {
@@ -33,8 +33,6 @@ public class LocationScreen extends Screen {
 	 */
 	public LocationScreen(Game game, Context context) {
 		super(game, context);
-
-		resume();
 	}
 
 	/**
