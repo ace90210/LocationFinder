@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout android:background="@color/background_dark" android:layout_height="match_parent" android:layout_width="match_parent" xmlns:android="http://schemas.android.com/apk/res/android">
     <FrameLayout android:id="@id/google_map_container" android:layout_height="match_parent" android:layout_width="match_parent" />
-    <Button android:id="@id/button_home" android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Home" />
+    <Button android:background="@color/bright_foreground_dark" android:id="@id/button_home" android:layout_height="50dp" android:layout_margin="20dp" android:layout_width="wrap_content" android:text="Home" />
 </RelativeLayout>
