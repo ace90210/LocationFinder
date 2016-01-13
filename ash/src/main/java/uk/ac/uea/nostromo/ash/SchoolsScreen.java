@@ -1,5 +1,5 @@
 /*
- * SchoolsScreen.java	v0.4.0	2016-01-13
+ * SchoolsScreen.java	v0.5.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -8,14 +8,16 @@ import android.content.Context;
 import android.widget.ExpandableListView;
 import uk.ac.uea.nostromo.mother.DataObject;
 import uk.ac.uea.nostromo.mother.Game;
+import uk.ac.uea.nostromo.mother.Location;
 import uk.ac.uea.nostromo.mother.Screen;
 import uk.ac.uea.nostromo.mother.XMLDatastrategy;
+import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
 
 /**
  * Present a complete list of all the schools on campus.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.4.0
+ * @version	v0.5.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class SchoolsScreen extends Screen {
@@ -73,7 +75,7 @@ public class SchoolsScreen extends Screen {
 		activity = (MainActivity) game;
         activity.setContentView(R.layout.category_list_screen);
 
-		listAdapter = new ExpandableListAdapter(context);
+	    listAdapter = new ExpandableListAdapter((AndroidGame) game, context);
 
 		dataStrategy = new XMLDatastrategy("mapdata.xml", context);
 		mapTable = game.getDataIO().readDataList(dataStrategy);
@@ -92,12 +94,14 @@ public class SchoolsScreen extends Screen {
 		for (DataObject dataObject : schools) {
 			XMLDatastrategy.MapRow row;
 			String title, caption;
+			Location location;
 
 			row = ((XMLDatastrategy.MapRow)((DataObject)dataObject.getData()).getData());
 			title = row.getName();
 			caption = row.getDescription();
+			location = new Location(row.getLat(), row.getLongitude());
 
-			listAdapter.addEntry(title, caption);
+			listAdapter.addEntry(title, caption, location);
 		}
 
 		listView = (ExpandableListView) activity.findViewById(R.id.category_list);

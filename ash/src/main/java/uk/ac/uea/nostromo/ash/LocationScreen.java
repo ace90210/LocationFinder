@@ -8,7 +8,10 @@ import android.content.Context;
 import android.util.Log;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import uk.ac.uea.nostromo.mother.Game;
+import uk.ac.uea.nostromo.mother.Location;
 import uk.ac.uea.nostromo.mother.Screen;
 import uk.ac.uea.nostromo.mother.implementation.Graphics;
 
@@ -25,6 +28,11 @@ public class LocationScreen extends Screen {
 	 * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
 	 */
 	private static final String TAG = "LocationScreen";
+
+	/**
+	 * @since	!_TODO__ [Alex Melbourne] : Modify this values when forking a release later.
+	 */
+	private Location desiredLocation;
 
 	/**
 	 * @param	game	{@inheritDoc}
@@ -83,8 +91,17 @@ public class LocationScreen extends Screen {
 				new OnMapReadyCallback() {
 					@Override
 					public void onMapReady(GoogleMap googleMap) {
+						LatLng location;
+						MarkerOptions markerOptions;
+
 						Log.i(TAG, "Our `GoogleMap` object is ready for us " +
 								"to make use of.");
+
+						location = new LatLng(desiredLocation.getLatitude(), desiredLocation.getLongitude());
+						markerOptions = new MarkerOptions();
+
+						markerOptions.position(location);
+						googleMap.addMarker(markerOptions);
 					}
 				});
 	}
@@ -111,5 +128,15 @@ public class LocationScreen extends Screen {
 		if (newScreen != null) {
 			((MainActivity) game).setScreen(newScreen);
 		}
+	}
+
+	/**
+	 * Set the location that the user desired to travel to.
+	 *
+	 * @param	location	The desired location to place on our map.
+	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+	 */
+	public void setLocation(Location location) {
+		desiredLocation = location;
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * ExpandableListAdapter.java	v1.1.0	2016-01-13
+ * ExpandableListAdapter.java	v3.0.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -13,12 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
+import uk.ac.uea.nostromo.mother.Location;
+import uk.ac.uea.nostromo.mother.implementation.AndroidGame;
 
 /**
  * {@inheritDoc}
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.1.0
+ * @version	v3.0.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -26,6 +28,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
 	 */
 	private Context context;
+
+	/**
+	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+	 */
+	private AndroidGame game;
 
 	/**
 	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
@@ -43,11 +50,17 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
 	 */
-	public ExpandableListAdapter(Context currentContext) {
+	private List<Location> locations;
+
+	/**
+	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+	 */
+	public ExpandableListAdapter(AndroidGame currentGame, Context currentContext) {
 		titles = new ArrayList<String>();
 		captions = new ArrayList<String>();
 
 		context = currentContext;
+		game = currentGame;
 	}
 
 	/**
@@ -177,7 +190,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		textView = new TextView(context);
 		textView.setText(captions.get(childPosition));
 
-		button = new Button(context);
+		button = new LocationButton(game, context, locations.get(childPosition));
 		button.setText("Take me here!");
 
 		linearLayout.addView(textView);
@@ -202,8 +215,61 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/**
 	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
 	 */
-	public void addEntry(String title, String caption) {
+	public void addEntry(String title, String caption, Location location) {
 		titles.add(title);
 		captions.add(caption);
+		locations.add(location);
+	}
+
+	/**
+	 * Store a given location so that we can make use of it when the
+	 * user interacts with us.
+	 *
+	 * <p>This is a horrendous hack. If there is a God hopefully he will
+	 * have mercy on my fragile soul.</p>
+	 *
+	 * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
+	 * @version	v0.1.0
+	 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+	 */
+	public class LocationButton extends Button {
+		/**
+		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+		 */
+		private Location desiredLocation;
+
+		/**
+		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+		 */
+		private AndroidGame game;
+
+		/**
+		 *
+		 */
+		private Context context;
+
+		/**
+		 * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
+		 */
+		public LocationButton(AndroidGame currentGame, Context currentContext, Location location) {
+			super(currentContext);
+
+			game = currentGame;
+			context = currentContext;
+			desiredLocation = location;
+
+			super.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					LocationScreen newScreen;
+
+					newScreen = new LocationScreen(game, context);
+					if (newScreen != null) {
+						newScreen.setLocation(desiredLocation);
+						game.setScreen(newScreen);
+					}
+				}
+			});
+		}
 	}
 }
