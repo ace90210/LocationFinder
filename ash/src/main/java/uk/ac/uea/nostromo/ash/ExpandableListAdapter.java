@@ -1,5 +1,5 @@
 /*
- * ExpandableListAdapter.java	v1.0.0	2016-01-12
+ * ExpandableListAdapter.java	v1.1.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -8,6 +8,8 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
  * {@inheritDoc}
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v1.0.0
+ * @version	v1.1.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
@@ -165,12 +167,23 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	 */
 	@Override
 	public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
+		LinearLayout linearLayout;
 		TextView textView;
+		Button button;
+
+		linearLayout = new LinearLayout(context);
+		linearLayout.setOrientation(LinearLayout.VERTICAL);
 
 		textView = new TextView(context);
 		textView.setText(captions.get(childPosition));
 
-		return textView;
+		button = new Button(context);
+		button.setText("Take me here!");
+
+		linearLayout.addView(textView);
+		linearLayout.addView(button);
+
+		return linearLayout;
 	}
 
 	/**
