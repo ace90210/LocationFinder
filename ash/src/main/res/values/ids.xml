@@ -5,5 +5,6 @@
 	<item type="id" name="category_list" />
 	<item type="id" name="category_residences" />
 	<item type="id" name="category_schools" />
+	<item type="id" name="google_map_container" />
 	<item type="id" name="table_layout" />
 </resources>
