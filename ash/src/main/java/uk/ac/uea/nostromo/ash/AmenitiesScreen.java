@@ -1,5 +1,5 @@
 /*
- * AmenitiesScreen.java	v0.3.0	2016-01-12
+ * AmenitiesScreen.java	v0.4.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.XMLDatastrategy;
  * Present a list of all the amenities on campus.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.3.0
+ * @version	v0.4.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class AmenitiesScreen extends Screen {
@@ -26,8 +26,6 @@ public class AmenitiesScreen extends Screen {
      */
     public AmenitiesScreen(Game game, Context context) {
         super(game, context);
-
-        resume();
     }
 
     /**

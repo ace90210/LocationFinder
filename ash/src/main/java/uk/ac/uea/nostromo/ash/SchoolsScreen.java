@@ -1,5 +1,5 @@
 /*
- * SchoolsScreen.java	v0.3.0	2016-01-12
+ * SchoolsScreen.java	v0.4.0	2016-01-13
  */
 
 package uk.ac.uea.nostromo.ash;
@@ -15,7 +15,7 @@ import uk.ac.uea.nostromo.mother.XMLDatastrategy;
  * Present a complete list of all the schools on campus.
  *
  * @author	Alex Melbourne {@literal <a.melbourne@uea.ac.uk>}
- * @version	v0.3.0
+ * @version	v0.4.0
  * @since	!_TODO__ [Alex Melbourne] : Update this value when forking a release.
  */
 public class SchoolsScreen extends Screen {
@@ -26,8 +26,6 @@ public class SchoolsScreen extends Screen {
      */
     public SchoolsScreen(Game game, Context context) {
         super(game, context);
-
-        resume();
     }
 
     /**
